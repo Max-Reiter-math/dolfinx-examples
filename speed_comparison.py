@@ -6,6 +6,8 @@ from dolfinx.mesh import create_unit_square, create_unit_cube, create_unit_inter
 from dolfinx.fem import ElementMetaData, functionspace, Function
 from dolfinx.io import XDMFFile, VTKFile, VTXWriter, FidesWriter
 
+# dolfinx version v0.7.0
+
 class TGV:
     """
     class for the velocity field of a standard taylor green vortex
@@ -17,14 +19,6 @@ class TGV:
         values = np.zeros((2, x.shape[1]))
         values[0] = -np.cos(x[0])*np.sin(x[1])*np.exp(-2.0*self.nu*self.t)
         values[1] = np.sin(x[0])*np.cos(x[1])*np.exp(-2.0*self.nu*self.t)
-        return values
-    
-def f( x: np.ndarray):
-        nu=3
-        t=1
-        values = np.zeros((2, x.shape[1]))
-        values[0] = -np.cos(x[0])*np.sin(x[1])*np.exp(-2.0*nu*t)
-        values[1] = np.sin(x[0])*np.cos(x[1])*np.exp(-2.0*nu*t)
         return values
 
 def get_function(tdim: int, celltype: CellType, dim: int, family: str, order: int):

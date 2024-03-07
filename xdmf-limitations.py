@@ -5,8 +5,7 @@ from dolfinx.mesh import CellType, create_unit_cube, create_unit_interval, creat
 from dolfinx.io import XDMFFile
 from dolfinx.fem import functionspace, ElementMetaData, Function
 
-
-# dolfinx v 0.7.0
+# dolfinx version v0.7.0
 
 #NOTE - We call the last input order on purpose because it depends on the CellType whether it is equivalent to the polynomial degree. For more see: https://defelement.com/
 
