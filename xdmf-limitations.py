@@ -68,7 +68,7 @@ def get_function(tdim: int, celltype: CellType, dim: int, family: str, order: in
 # (u,domain) = get_function(2, CellType.triangle, 3, "CR", 1) # RuntimeError: Function and Mesh dof layouts do not match. Maybe the Function needs to be interpolated?
 #!SECTION
 
-with XDMFFile(MPI.COMM_WORLD, 'outputs/output1.xdmf', "w") as xdmf:
+with XDMFFile(MPI.COMM_WORLD, 'outputs/xdmf-test.xdmf', "w") as xdmf:
     xdmf.write_mesh(domain)
     xdmf.write_function(u)
 print("Success")
