@@ -89,10 +89,10 @@ with VTKFile(MPI.COMM_WORLD, "outputs/stationary.pvd", "w") as vtk:
 #NOTE - VTX supports arbitrary order Lagrange finite elements for the geometry description and arbitrary order (discontinuous) Lagrange finite elements for Functions. All Functions for output must share the same mesh and have the same element type.
 #NOTE - Paraview: only available for version 5.12 and higher
 """
-# with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", u) as vtx: #RuntimeError: Mixed functions are not supported by VTXWriter.
-# with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", u.sub(0)) as vtx: # Error: munmap_chunk(): invalid pointer
-# with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", [u.sub(0).collapse(), u.sub(1).collapse()]) as vtx: # only works if both functions have the same order
-with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", u.sub(0).collapse()) as vtx: # works
+# with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", u, engine="BP4") as vtx: #RuntimeError: Mixed functions are not supported by VTXWriter.
+# with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", u.sub(0), engine="BP4") as vtx: # Error: munmap_chunk(): invalid pointer
+# with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", [u.sub(0).collapse(), u.sub(1).collapse()], engine="BP4") as vtx: # only works if both functions have the same order
+with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", u.sub(0).collapse(), engine="BP4") as vtx: # works
     vtx.write(0.0)
 """
 #!SECTION
@@ -100,12 +100,12 @@ with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", u.sub(0).collapse()) as 
 
 #SECTION - Fides
 #NOTE - Fides (https://fides.readthedocs.io/) supports first order Lagrange finite elements for the geometry description and first order Lagrange finite elements for functions. All functions have to be of the same element family and same order.
-#NOTE - Paraview: only available for version 5.12 and higher
+#NOTE - Paraview: Currently not available for windows installer.
 """
-# with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-fides.bp", u) as fides: # RuntimeError: Mixed functions are not supported by FidesWriter
-# with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-fides.bp", u.sub(0)) as fides: # PETSC ERROR 
-# with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-fides.bp", [u.sub(0).collapse(),u.sub(1).collapse()]) as fides: # only works for order <= 1 and when all functions have the same basis elements
-with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-fides.bp", u.sub(0).collapse()) as fides: # only works for order <= 1
+# with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-fides.bp", u, engine="BP4") as fides: # RuntimeError: Mixed functions are not supported by FidesWriter
+# with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-fides.bp", u.sub(0), engine="BP4") as fides: # PETSC ERROR 
+# with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-fides.bp", [u.sub(0).collapse(),u.sub(1).collapse()], engine="BP4") as fides: # only works for order <= 1 and when all functions have the same basis elements
+with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-fides.bp", u.sub(0).collapse(), engine="BP4") as fides: # only works for order <= 1
     fides.write(0.0)
 """
 #!SECTION 
