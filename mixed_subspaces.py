@@ -8,6 +8,10 @@ from dolfinx.io import XDMFFile, VTKFile, VTXWriter, FidesWriter
 
 # dolfinx version v0.7.0
 
+"""
+In this file the correct use of the different output options of dolfinx with respect to mixed FEM spaces is explored.
+"""
+
 class TGV:
     """
     class for the velocity field of a standard taylor green vortex

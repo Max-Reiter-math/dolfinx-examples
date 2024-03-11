@@ -7,6 +7,10 @@ from dolfinx.io import XDMFFile, VTKFile, VTXWriter, FidesWriter
 
 # dolfinx version v0.7.0
 
+"""
+In this file the use of the different output options of dolfinx is explored.
+"""
+
 class TGV:
     """
     class for the velocity field of a standard taylor green vortex

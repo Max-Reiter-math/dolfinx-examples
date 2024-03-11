@@ -7,6 +7,10 @@ from dolfinx.fem import functionspace, ElementMetaData, Function
 
 # dolfinx version v0.7.0
 
+"""
+In this file we consider examples of FEM spaces which work and do not wirk the XDMF File format.
+"""
+
 #NOTE - We call the last input order on purpose because it depends on the CellType whether it is equivalent to the polynomial degree. For more see: https://defelement.com/
 
 def get_function(tdim: int, celltype: CellType, dim: int, family: str, order: int):
