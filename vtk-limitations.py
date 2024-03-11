@@ -72,7 +72,7 @@ def get_function(tdim: int, celltype: CellType, dim: int, family: str, order: in
 (u,domain) = get_function(2, CellType.triangle, 3, "CR", 1) # Success
 #!SECTION
 
-with VTKFile(MPI.COMM_WORLD, "outputs/stationary-VTK.pvd", "w") as vtk:
+with VTKFile(MPI.COMM_WORLD, "outputs/vtk-test.pvd", "w") as vtk:
     vtk.write_mesh(domain)
     vtk.write_function(u)
 print("Success")
