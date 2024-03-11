@@ -48,14 +48,14 @@ tgv = TGV(t=0.0)
 (u,domain) = get_function(2, CellType.triangle, 2, "Lagrange", 1)
 tgv.t = 0
 u.interpolate(tgv)
-with XDMFFile(MPI.COMM_WORLD, 'outputs/output_stationary.xdmf', "w") as xdmf:
+with XDMFFile(MPI.COMM_WORLD, 'outputs/stationary-XDMF.xdmf', "w") as xdmf:
     xdmf.write_mesh(domain)
     xdmf.write_function(u)
 #!SECTION
     
 #SECTION - Instationary case, stationary mesh
 (u,domain) = get_function(2, CellType.triangle, 2, "Lagrange", 1)
-xdmf = XDMFFile(MPI.COMM_WORLD, 'outputs/output_instationary.xdmf', "w")
+xdmf = XDMFFile(MPI.COMM_WORLD, 'outputs/instationary-XDMF.xdmf', "w")
 xdmf.write_mesh(domain)
 for i in range(0,10,1):
     t=i/10
@@ -75,14 +75,14 @@ xdmf.close()
 (u,domain) = get_function(2, CellType.triangle, 2, "Lagrange", 4)
 tgv.t = 0
 u.interpolate(tgv)
-with VTKFile(MPI.COMM_WORLD, "outputs/stationary.pvd", "w") as vtk:
+with VTKFile(MPI.COMM_WORLD, "outputs/stationary-VTK.pvd", "w") as vtk:
     vtk.write_mesh(domain)
     vtk.write_function(u)
 #!SECTION
 
 #SECTION - Instationary case, stationary mesh
 (u,domain) = get_function(2, CellType.triangle, 2, "Lagrange", 4)
-vtk = VTKFile(MPI.COMM_WORLD, "outputs/instationary.pvd", "w")
+vtk = VTKFile(MPI.COMM_WORLD, "outputs/instationary-VTK.pvd", "w")
 vtk.write_mesh(domain)
 for i in range(0,10,1):
     t=i/10
@@ -105,13 +105,13 @@ vtk.close()
 (u,domain) = get_function(2, CellType.triangle, 2, "Lagrange", 4)
 tgv.t = 0
 u.interpolate(tgv)
-with VTXWriter(MPI.COMM_WORLD, "outputs/stationary.bp", u) as vtx:
+with VTXWriter(MPI.COMM_WORLD, "outputs/stationary-VTX.bp", u, engine="BP4") as vtx:
     vtx.write(0.0)
 #!SECTION
 
 # #SECTION - Instationary case, stationary mesh
 (u,domain) = get_function(2, CellType.triangle, 2, "Lagrange", 4)
-vtx = VTXWriter(MPI.COMM_WORLD, "outputs/instationary.bp", u)
+vtx = VTXWriter(MPI.COMM_WORLD, "outputs/instationary-VTX.bp", u, engine="BP4")
 for i in range(0,10,1):
     t=i/10
     tgv.t = t
@@ -122,23 +122,24 @@ vtx.close()
 
 #TODO - time dependent mesh
 
+#NOTE - The resulting files have to be opened in Paraview with the Adios2VTX Reader.
 #!SECTION
 
 
 #SECTION - Fides
 #NOTE - Fides (https://fides.readthedocs.io/) supports first order Lagrange finite elements for the geometry description and first order Lagrange finite elements for functions. All functions have to be of the same element family and same order.
-#NOTE - Paraview: only available for version 5.12 and higher
+#NOTE - You need a version of Paraview that supports Fides. For the standard windows installer this does not seem to be the case yet. See: https://discourse.paraview.org/t/using-fidesreader-on-windows/13434/11
 #SECTION - with Context manager
 (u,domain) = get_function(2, CellType.triangle, 2, "Lagrange", 1)
 tgv.t = 0
 u.interpolate(tgv)
-with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-fides.bp", u) as fides:
+with FidesWriter(MPI.COMM_WORLD, "outputs/stationary-Fides.bp", u, engine="BP4") as fides:
     fides.write(0.0)
 #!SECTION
 
 #SECTION - Instationary case, stationary mesh
 (u,domain) = get_function(2, CellType.triangle, 2, "Lagrange", 1)
-fides = FidesWriter(MPI.COMM_WORLD, "outputs/instationary-fides.bp", u)
+fides = FidesWriter(MPI.COMM_WORLD, "outputs/instationary-Fides.bp", u, engine="BP4")
 for i in range(0,10,1):
     t=i/10
     tgv.t = t
