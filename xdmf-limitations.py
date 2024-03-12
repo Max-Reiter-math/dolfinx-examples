@@ -5,7 +5,7 @@ from dolfinx.mesh import CellType, create_unit_cube, create_unit_interval, creat
 from dolfinx.io import XDMFFile
 from dolfinx.fem import functionspace, ElementMetaData, Function
 
-# dolfinx version v0.7.0
+# dolfinx version v0.7.3
 
 """
 In this file we consider examples of FEM spaces which work and do not wirk the XDMF File format.

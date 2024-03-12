@@ -6,7 +6,7 @@ from dolfinx.mesh import create_unit_square, create_unit_cube, create_unit_inter
 from dolfinx.fem import ElementMetaData, functionspace, Function
 from dolfinx.io import XDMFFile, VTKFile, VTXWriter, FidesWriter
 
-# dolfinx version v0.7.0
+# dolfinx version v0.7.3
 
 class TGV:
     """
