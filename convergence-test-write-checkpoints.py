@@ -12,6 +12,7 @@ import adios4dolfinx
 # adios4dolfinx - 0.7.3    
 
 """
+Testing postprocessed error computation for nested meshes with checkpoints (1/2):
 In this file we interpolate the Taylor-Green-Vortex to a sequence of hierarchical meshes. This is then written to checkpoints.
 """
 
