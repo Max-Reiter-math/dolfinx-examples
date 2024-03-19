@@ -61,10 +61,13 @@ def get_function(tdim: int, celltype: CellType, dim: int, family: str, order: in
 #!SECTION
 
 #SECTION - Other Function Spaces, see e.g. https://docs.fenicsproject.org/ufl/2022.2.0/manual/form_language.html?highlight=lagrange#element-families
-# (u,domain) = get_function(2, CellType.triangle, 3, "DG", 1) # Success
+#TODO - Test DG0
+# (u,domain) = get_function(2, CellType.triangle, 3, "DG", 0) # RuntimeError: VTK does not support cell-wise fields. See https://gitlab.kitware.com/vtk/vtk/-/issues/18458.
+#NOTE - For DG0 instead compute in DG0 and interpolate in DG1 before saving
+(u,domain) = get_function(2, CellType.triangle, 3, "DG", 1) # Success
 # (u,domain) = get_function(3, CellType.tetrahedron, 3, "DG", 1) # Success
 # (u,domain) = get_function(2, CellType.triangle, 3, "CG", 1) # Success
-(u,domain) = get_function(2, CellType.triangle, 3, "CR", 1) # Success
+# (u,domain) = get_function(2, CellType.triangle, 3, "CR", 1) # Success
 #!SECTION
 
 with VTXWriter(MPI.COMM_WORLD, "outputs/VTX-test.bp", u, engine="BP4") as vtx:
