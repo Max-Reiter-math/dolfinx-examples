@@ -1,0 +1,8 @@
+adios4dolfinx==0.7.3
+fenics_dolfinx==0.7.3
+fenics_ufl==2023.2.0
+matplotlib==3.9.1
+mpi4py==3.1.5
+numpy==2.0.0
+petsc4py==3.20.1
+pyvista==0.44.0

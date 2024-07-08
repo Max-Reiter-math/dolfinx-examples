@@ -1,0 +1,7 @@
+fenics_dolfin==2019.1.0
+fenics_ufl==2019.1.0
+matplotlib==3.5.1
+mpi4py==3.0.3
+numpy==1.20.2
+petsc4py==3.13.0
+pyvista==0.44.0

@@ -17,7 +17,7 @@ All files are meant as templates for experimentation. Different options can be u
 
 ## Requirements
 
-All requirements can be found in the file requirements.txt and can be installed via pip by
+All requirements can be found in the requirements text files and can be installed via pip by
 
 ```
 pip install -r requirements.txt
@@ -28,6 +28,8 @@ or via conda by
 ```
 conda create --name my-env-name --file requirements.txt -c conda-forge
 ```
+
+Note that there are different requirement for legacy FEniCS and FEniCSx.
 
 
 
